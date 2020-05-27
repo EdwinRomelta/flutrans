@@ -64,7 +64,7 @@ FlutterMethodChannel* channel;
           NSDictionary *json = object;
           NSDictionary *customer = json[@"customer"];
           CFAbsoluteTime timeInSeconds = CFAbsoluteTimeGetCurrent();
-          MidtransAddress *address = [MidtransAddress addressWithFirstName:@"flutrans" lastName:@"flutrans" phone:@"081" address:@"address" city:@"city" postalCode:@"55181" countryCode:@"id"];
+          MidtransAddress *address = [MidtransAddress addressWithFirstName:customer[@"first_name"] lastName:customer[@"last_name"] phone:nil address:nil city:nil postalCode:nil countryCode:nil];
           MidtransCustomerDetails *custDetail = [[MidtransCustomerDetails alloc] initWithFirstName:customer[@"first_name"] lastName: customer[@"last_name"] email: customer[@"email"] phone: customer[@"phone"] shippingAddress:address billingAddress:address];
           MidtransTransactionDetails *transDetail = [MidtransTransactionDetails alloc];
           [transDetail initWithOrderID: json[@"id"] andGrossAmount: json[@"total"]];
@@ -77,9 +77,7 @@ FlutterMethodChannel* channel;
               [arr addObject:item];
           }
           NSMutableArray *arrayOfCustomField = [NSMutableArray new];
-          [arrayOfCustomField addObject:@{MIDTRANS_CUSTOMFIELD_2:@""}];
-          [arrayOfCustomField addObject:@{MIDTRANS_CUSTOMFIELD_3:@""}];
-          [[MidtransMerchantClient shared] requestTransactionTokenWithTransactionDetails:transDetail itemDetails:arr customerDetails:custDetail customField:arrayOfCustomField binFilter:nil blacklistBinFilter:nil transactionExpireTime:nil completion:^(MidtransTransactionTokenResponse *token, NSError *error)
+          [[MidtransMerchantClient shared] requestTransactionTokenWithTransactionDetails:transDetail itemDetails:arr customerDetails:custDetail completion:^(MidtransTransactionTokenResponse *token, NSError *error)
            {
                if (token) {
                    MidtransUIPaymentViewController *vc = [[MidtransUIPaymentViewController new] initWithToken:token];

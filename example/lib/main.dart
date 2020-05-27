@@ -25,21 +25,21 @@ class _MyAppState extends State<MyApp> {
     });
     flutrans
         .makePayment(
-          MidtransTransaction(
+      MidtransTransaction(
+          "",
+          7500,
+          MidtransCustomer(
+              "Apin", "Prastya", "apin.klas@gmail.com", "085235419949"),
+          [
+            MidtransItem(
+              "5c18ea1256f67560cb6a00cdde3c3c7a81026c29",
               7500,
-              MidtransCustomer(
-                  "Apin", "Prastya", "apin.klas@gmail.com", "085235419949"),
-              [
-                MidtransItem(
-                  "5c18ea1256f67560cb6a00cdde3c3c7a81026c29",
-                  7500,
-                  2,
-                  "USB FlashDisk",
-                )
-              ],
-              skipCustomer: true,
-              customField1: "ANYCUSTOMFIELD"),
-        )
+              2,
+              "USB FlashDisk",
+            )
+          ],
+          skipCustomer: true,),
+    )
         .catchError((err) => print("ERROR $err"));
   }
 
@@ -61,9 +61,9 @@ class _MyAppState extends State<MyApp> {
           child: isMakePayment
               ? CircularProgressIndicator()
               : RaisedButton(
-                  child: Text("Make Payment"),
-                  onPressed: () => _makePayment(),
-                ),
+            child: Text("Make Payment"),
+            onPressed: () => _makePayment(),
+          ),
         ),
       ),
     );
