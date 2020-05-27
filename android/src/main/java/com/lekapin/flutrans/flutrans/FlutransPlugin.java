@@ -74,7 +74,7 @@ public class FlutransPlugin implements MethodCallHandler, TransactionFinishedCal
       JSONObject json = new JSONObject(str);
       JSONObject cJson = json.getJSONObject("customer");
       TransactionRequest transactionRequest = new
-              TransactionRequest(System.currentTimeMillis() + "", json.getInt("total"));
+              TransactionRequest(json.getString("id"), json.getInt("total"));
       ArrayList<ItemDetails> itemList = new ArrayList<>();
       JSONArray arr = json.getJSONArray("items");
       for(int i = 0; i < arr.length(); i++) {
