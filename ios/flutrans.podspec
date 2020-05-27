@@ -15,8 +15,8 @@ Midtrans Payment Gateway for Flutter.
   s.source_files = 'Classes/**/*'
   s.public_header_files = 'Classes/**/*.h'
   s.dependency 'Flutter'
-  s.dependency 'MidtransCoreKit'
-  s.dependency 'MidtransKit'
+  s.dependency 'MidtransCoreKit' , '~> 1.16.2'
+  s.dependency 'MidtransKit' , '~> 1.16.2'
   
   s.ios.deployment_target = '8.0'
 end
