@@ -77,7 +77,6 @@ FlutterMethodChannel* channel;
               [arr addObject:item];
           }
           NSMutableArray *arrayOfCustomField = [NSMutableArray new];
-          [arrayOfCustomField addObject:@{MIDTRANS_CUSTOMFIELD_1:json[@"custom_field_1"]}];
           [arrayOfCustomField addObject:@{MIDTRANS_CUSTOMFIELD_2:@""}];
           [arrayOfCustomField addObject:@{MIDTRANS_CUSTOMFIELD_3:@""}];
           [[MidtransMerchantClient shared] requestTransactionTokenWithTransactionDetails:transDetail itemDetails:arr customerDetails:custDetail customField:arrayOfCustomField binFilter:nil blacklistBinFilter:nil transactionExpireTime:nil completion:^(MidtransTransactionTokenResponse *token, NSError *error)

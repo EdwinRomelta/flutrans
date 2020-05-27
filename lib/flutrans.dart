@@ -104,13 +104,11 @@ class MidtransTransaction {
   final MidtransCustomer customer;
   final List<MidtransItem> items;
   final bool skipCustomer;
-  final String customField1;
   MidtransTransaction(
     this.id,
     this.total,
     this.customer,
     this.items, {
-    this.customField1,
     this.skipCustomer = false,
   });
   Map<String, dynamic> toJson() {
@@ -120,7 +118,6 @@ class MidtransTransaction {
       "skip_customer": skipCustomer,
       "items": items.map((v) => v.toJson()).toList(),
       "customer": customer.toJson(),
-      "custom_field_1": customField1,
     };
   }
 }

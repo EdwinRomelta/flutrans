@@ -88,8 +88,6 @@ public class FlutransPlugin implements MethodCallHandler, TransactionFinishedCal
         cus.setEmail(cJson.getString("email"));
         cus.setPhone(cJson.getString("phone"));
       transactionRequest.setCustomerDetails(cus);
-      if(json.has("custom_field_1"))
-        transactionRequest.setCustomField1(json.getString("custom_field_1"));
       transactionRequest.setItemDetails(itemList);
       UIKitCustomSetting setting = MidtransSDK.getInstance().getUIKitCustomSetting();
       if(json.has("skip_customer"))
